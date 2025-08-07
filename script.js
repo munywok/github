@@ -1,50 +1,36 @@
 // ==============================
-// Event Handling and Custom Form Validation
+// Global Scope
 // ==============================
-
-// Handle form submission
-document.getElementById("subscribeForm").addEventListener("submit", function(event) {
-  event.preventDefault(); // Prevent default form behavior
-
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("formMessage");
-
-  // Custom validation
-  if (name === "" || email === "") {
-    message.textContent = "Both fields are required.";
-    return;
-  }
-
-  if (!email.includes("@") || !email.includes(".")) {
-    message.textContent = "Please enter a valid email address.";
-    return;
-  }
-
-  message.style.color = "green";
-  message.textContent = `Thank you, ${name}, for subscribing!`;
-});
+let box = document.getElementById("box");
+let output = document.getElementById("output");
 
 // ==============================
-// Interactive Feature 1: Change Background
+// Function: Start Animation
+// Demonstrates scope and triggers a keyframe animation
 // ==============================
-function changeBackground() {
-  const colors = ["#f0f8ff", "#d1e7dd", "#fff3cd", "#f8d7da", "#e2e3e5"];
-  const randomColor = colors[Math.floor(Math.random() * colors.length)];
-  document.body.style.backgroundColor = randomColor;
+function startAnimation() {
+  box.style.animation = "bounce 1s ease";
+  output.textContent = "Bounce animation started!";
 }
 
 // ==============================
-// Interactive Feature 2: Counter
+// Function: Change Size
+// Demonstrates parameters and scope
 // ==============================
-let counter = 0;
-
-function increaseCounter() {
-  counter++;
-  document.getElementById("counterValue").textContent = counter;
+function changeSize(size) {
+  box.style.width = size + "px";
+  box.style.height = size + "px";
+  output.textContent = "Box resized to " + size + "px.";
 }
 
-function resetCounter() {
-  counter = 0;
-  document.getElementById("counterValue").textContent = counter;
+// ==============================
+// Function: Calculate Area (with return value)
+// Demonstrates use of return value
+// ==============================
+function calculateArea(width, height) {
+  return width * height;
 }
+
+// Example of using calculateArea
+let area = calculateArea(10, 20);
+console.log("Area of 10x20 box is:", area);
