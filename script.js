@@ -1,55 +1,50 @@
 // ==============================
-// Part 1: Variable Declarations and Conditionals
+// Event Handling and Custom Form Validation
 // ==============================
 
-let userName = "Joshua";
-let userAge = 20;
+// Handle form submission
+document.getElementById("subscribeForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent default form behavior
 
-if (userAge >= 18) {
-  console.log(`${userName} is an adult.`);
-} else {
-  console.log(`${userName} is a minor.`);
-}
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("formMessage");
 
-// ==============================
-// Part 2: Custom Functions
-// ==============================
-
-function greetUser() {
-  const message = `Hello, ${userName}! Welcome to the JavaScript project.`;
-  document.getElementById("messageArea").textContent = message;
-  console.log("Greet function called.");
-}
-
-function calculateSum() {
-  let sum = 0;
-  for (let i = 1; i <= 10; i++) {
-    sum += i;
-  }
-  document.getElementById("messageArea").textContent = `The sum of numbers from 1 to 10 is: ${sum}`;
-  console.log("Sum calculated:", sum);
-}
-
-// ==============================
-// Part 3: Loop Examples
-// ==============================
-
-// Loop 1: For loop
-function loopMessages() {
-  const itemList = document.getElementById("itemList");
-  itemList.innerHTML = ""; // Clear previous items
-
-  for (let i = 1; i <= 5; i++) {
-    const li = document.createElement("li");
-    li.textContent = `Item number ${i}`;
-    itemList.appendChild(li);
+  // Custom validation
+  if (name === "" || email === "") {
+    message.textContent = "Both fields are required.";
+    return;
   }
 
-  // Loop 2: While loop
-  let counter = 0;
-  while (counter < 3) {
-    console.log(`This is while loop number ${counter + 1}`);
-    counter++;
+  if (!email.includes("@") || !email.includes(".")) {
+    message.textContent = "Please enter a valid email address.";
+    return;
   }
+
+  message.style.color = "green";
+  message.textContent = `Thank you, ${name}, for subscribing!`;
+});
+
+// ==============================
+// Interactive Feature 1: Change Background
+// ==============================
+function changeBackground() {
+  const colors = ["#f0f8ff", "#d1e7dd", "#fff3cd", "#f8d7da", "#e2e3e5"];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  document.body.style.backgroundColor = randomColor;
 }
 
+// ==============================
+// Interactive Feature 2: Counter
+// ==============================
+let counter = 0;
+
+function increaseCounter() {
+  counter++;
+  document.getElementById("counterValue").textContent = counter;
+}
+
+function resetCounter() {
+  counter = 0;
+  document.getElementById("counterValue").textContent = counter;
+}
